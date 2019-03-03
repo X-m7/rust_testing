@@ -11,8 +11,10 @@ fn main() {
 		let mut input = String::new(); //mut --> mutable
 		io::stdin().read_line(&mut input) //&input for immutable reference
 			.expect("Failed to read");
-		let input: u32 = input.trim().parse() //u32 --> unsigned 32bit integer
-			.expect("Number expected");
+		let input: u32 = match input.trim().parse() { //u32 is a data type, match checks the Result and actually handles it instead of crashing like expect()
+			Ok(num) => num,
+			Err(_) => continue,
+		};
 		let random_number = rand::thread_rng().gen_range(1,51); //crypto-grade apparently, range includes min and excludes max
 		println!("Random Number: {}", random_number);
 		match input.cmp(&random_number) {
