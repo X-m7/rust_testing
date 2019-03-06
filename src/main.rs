@@ -20,7 +20,7 @@ fn main() {
 		match input.cmp(&random_number) {
 			Ordering::Less => println!("{} < {}", input, random_number), //comma to end single statement
 			Ordering::Greater => println!("{} > {}", input, random_number),
-			Ordering::Equal => { //with braces for multiple
+			Ordering::Equal => { //with braces for multiple, if single statement here comma still needed
 				println!("{} == {}", input, random_number);
 				break;
 			}
