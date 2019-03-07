@@ -4,6 +4,25 @@ use std::cmp::Ordering;
 use rand::Rng;
 
 fn main() {
+	println!("1. Guessing");
+	println!("To exit type anything else");
+	print!("Option: ");
+	io::stdout().flush()
+		.expect("Failed to flush");
+	let mut input = String::new();
+	io::stdin().read_line(&mut input)
+		.expect("Failed to read");
+	let input = match input.trim().parse::<char>() { //trim removes whitespace before and after, another way to indicate to parse() the type needed
+		Ok(value) => value,
+		Err(_) => std::process::exit(0),
+	};
+	match input {
+		'1' => guessing(),
+		_ => std::process::exit(0),
+	}
+}
+
+fn guessing() {
 	loop { //infinite
 		print!("Input: "); //need flush() afterwards so it is actually printed (in case of line buffering)
 		io::stdout().flush()
