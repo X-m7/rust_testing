@@ -5,6 +5,7 @@ use rand::Rng;
 
 fn main() {
 	println!("1. Guessing");
+	println!("2. Enum");
 	println!("To exit type anything else");
 	print!("Option: ");
 	io::stdout().flush()
@@ -18,6 +19,7 @@ fn main() {
 	};
 	match input {
 		'1' => guessing(),
+		'2' => enum_test(),
 		_ => std::process::exit(0),
 	}
 }
@@ -44,5 +46,34 @@ fn guessing() {
 				break;
 			}
 		}
+	}
+}
+
+enum Message {
+	Quit,
+	Move {x: i32, y: i32}, //contains struct
+	Write(String), //contains tuple
+	ChangeColor(i32, i32, i32),
+}
+
+fn enum_test() {
+	let move_msg = Message::Move{x: 2, y: 4}; //struct, need to specify names
+	let x = 7;
+	let y = 9;
+	let move_msg2 = Message::Move{x, y}; //here x & y are already defined, shorter way
+	let color_msg = Message::ChangeColor(2, 4, 6); //tuple, specify directly
+	enum_match(move_msg); //note: the Copy trait is not implemented here, so move_msg can only be used once
+	enum_match(move_msg2);
+	enum_match(color_msg);
+	enum_match(Message::Quit);
+	enum_match(Message::Write(String::from("lol"))); //alternatively just construct it in there, no need for variable
+}
+
+fn enum_match(msg : Message) {
+	match msg {
+		Message::Quit => println!("Quit"),
+		Message::Move{x, y} => println!("Move to ({}, {})", x, y),
+		Message::Write(x) => println!("{}", x),
+		Message::ChangeColor(x, y, z) => println!("Change color to ({}, {}, {})", x, y, z),
 	}
 }
