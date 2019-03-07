@@ -32,14 +32,14 @@ fn guessing() {
 			.expect("Failed to read");
 		let input: u32 = match input.trim().parse() { //u32 is a data type (unsigned 32bit integer), match checks the Result and actually handles it instead of crashing like expect() (negative also counts as bad, because unsigned)
 			Ok(num) => num,
-			Err(_) => continue,
+			Err(_) => continue, //_ means anything
 		};
 		let random_number = rand::thread_rng().gen_range(1,51); //crypto-grade apparently, range includes min and excludes max
 		println!("Random Number: {}", random_number);
 		match input.cmp(&random_number) {
 			Ordering::Less => println!("{} < {}", input, random_number), //comma to end single statement
 			Ordering::Greater => println!("{} > {}", input, random_number),
-			Ordering::Equal => { //with braces for multiple, if single statement here comma still needed
+			Ordering::Equal => { //with braces for multiple
 				println!("{} == {}", input, random_number);
 				break;
 			}
