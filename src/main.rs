@@ -77,9 +77,9 @@ fn enum_test() {
 
 fn enum_match(msg : Message) {
 	match msg {
-		Message::Quit => println!("Quit"),
 		Message::Move{x, y} => println!("Move to ({}, {})", x, y),
 		Message::Write(x) => println!("{}", x),
 		Message::ChangeColor(x, y, z) => println!("Change color to ({}, {}, {})", x, y, z),
+		_ => {}
 	}
 }
