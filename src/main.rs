@@ -56,6 +56,14 @@ enum Message {
 	ChangeColor(i32, i32, i32),
 }
 
+impl Message { //add methods to the Message enum, works with structs as well
+	fn print_variant(&self, actually_print : bool) {
+		if actually_print {
+			enum_match(&self);
+		}
+	}
+}
+
 fn enum_test() {
 	let move_msg = Message::Move{x: 2, y: 4}; //struct, need to specify names
 	let x = 7;
@@ -69,7 +77,7 @@ fn enum_test() {
 		println!("Third value of color_msg is {}", z);
 	}
 	enum_match(&move_msg);
-	enum_match(&move_msg2);
+	move_msg2.print_variant(false);
 	enum_match(&color_msg);
 	enum_match(&Message::Quit);
 	enum_match(&Message::Write(String::from("lol"))); //alternatively just construct it in there, no need for variable
