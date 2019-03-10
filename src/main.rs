@@ -62,6 +62,12 @@ fn enum_test() {
 	let y = 9;
 	let move_msg2 = Message::Move{x, y}; //here x & y are already defined, shorter way
 	let color_msg = Message::ChangeColor(2, 4, 6); //tuple, specify directly
+	if let Message::Move{x, y} = move_msg { //names inside {} have to match the ones in the definition (except order)
+		println!("First move_msg will have x={} and y={}", x, y);
+	}
+	if let Message::ChangeColor(_, _, z) = color_msg { //names in () can be anything, even _ if not needed
+		println!("Third value of color_msg is {}", z);
+	}
 	enum_match(move_msg); //note: the Copy trait is not implemented here, so move_msg can only be used once
 	enum_match(move_msg2);
 	enum_match(color_msg);
