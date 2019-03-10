@@ -87,6 +87,7 @@ fn enum_test() {
 
 fn enum_match(msg : &Message) { //& so the enum will not be copied/moved into this function's scope
 	match msg {
+		Message::Move{x: x @ 2...4, y} => println!("Move to ({}, {}), special", x, y), //check that x is in the range and bind it as well (can use different name)
 		Message::Move{x, y} => println!("Move to ({}, {})", x, y),
 		Message::Write(x) => println!("{}", x),
 		Message::ChangeColor(x, y, z) => println!("Change color to ({}, {}, {})", x, y, z),
