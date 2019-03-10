@@ -72,10 +72,10 @@ fn enum_test() {
 	let y = 9;
 	let move_msg2 = Message::Move{x, y}; //here x & y are already defined, shorter way
 	let color_msg = Message::ChangeColor(2, 4, 6); //tuple, specify directly
-	if let Message::Move{x, y} = move_msg { //names inside {} have to match the ones in the definition (except order)
-		println!("First move_msg will have x={} and y={}", x, y);
+	if let Message::Move{x, ..} = move_msg { //names inside {} have to match the ones in the definition, to ignore the rest use ..
+		println!("First move_msg will have x={}", x);
 	}
-	if let Message::ChangeColor(_, _, z) = color_msg { //names in () can be anything, even _ if not needed
+	if let Message::ChangeColor(_, _, z) = color_msg { //names in () can be anything, even _ if not needed (or .. to ignore multiple fields)
 		println!("Third value of color_msg is {}", z);
 	}
 	enum_match(&move_msg);
