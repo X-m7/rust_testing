@@ -90,7 +90,7 @@ fn enum_match(msg : &Message) { //& so the enum will not be copied/moved into th
 		Message::Move{x, y} => println!("Move to ({}, {})", x, y),
 		Message::Write(x) => println!("{}", x),
 		Message::ChangeColor(x, y, z) => println!("Change color to ({}, {}, {})", x, y, z),
-		_ => {}
+		_ => () //empty curly brackets also works here, but this is how the Rust book does it
 	}
 }
 
