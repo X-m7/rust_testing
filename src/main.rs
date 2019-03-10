@@ -68,14 +68,14 @@ fn enum_test() {
 	if let Message::ChangeColor(_, _, z) = color_msg { //names in () can be anything, even _ if not needed
 		println!("Third value of color_msg is {}", z);
 	}
-	enum_match(move_msg); //note: the Copy trait is not implemented here, so move_msg can only be used once
-	enum_match(move_msg2);
-	enum_match(color_msg);
-	enum_match(Message::Quit);
-	enum_match(Message::Write(String::from("lol"))); //alternatively just construct it in there, no need for variable
+	enum_match(&move_msg);
+	enum_match(&move_msg2);
+	enum_match(&color_msg);
+	enum_match(&Message::Quit);
+	enum_match(&Message::Write(String::from("lol"))); //alternatively just construct it in there, no need for variable
 }
 
-fn enum_match(msg : Message) {
+fn enum_match(msg : &Message) { //& so the enum will not be copied/moved into this function's scope
 	match msg {
 		Message::Move{x, y} => println!("Move to ({}, {})", x, y),
 		Message::Write(x) => println!("{}", x),
