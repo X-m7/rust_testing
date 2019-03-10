@@ -6,6 +6,7 @@ use rand::Rng;
 fn main() {
 	println!("1. Guessing");
 	println!("2. Enum");
+	println!("3. Option Enum");
 	println!("To exit type anything else");
 	print!("Option: ");
 	io::stdout().flush()
@@ -20,6 +21,7 @@ fn main() {
 	match input {
 		'1' => guessing(),
 		'2' => enum_test(),
+		'3' => option_test(),
 		_ => std::process::exit(0),
 	}
 }
@@ -89,5 +91,24 @@ fn enum_match(msg : &Message) { //& so the enum will not be copied/moved into th
 		Message::Write(x) => println!("{}", x),
 		Message::ChangeColor(x, y, z) => println!("Change color to ({}, {}, {})", x, y, z),
 		_ => {}
+	}
+}
+
+fn option_test() {
+	let some_string = Some(String::from("string"));
+	let null_string : Option<String> = None;
+	print_string(&some_string);
+	if !print_string(&null_string) {
+		println!("null");
+	}
+}
+
+fn print_string(value : &Option<String>) -> bool {
+	match value {
+		Some(x) => {
+			println!("{}", x);
+			true
+		}
+		None => false
 	}
 }
