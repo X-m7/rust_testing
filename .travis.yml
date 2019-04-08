@@ -1,0 +1,15 @@
+language: rust
+cache: cargo
+before_script:
+- pip install 'travis-cargo<0.2' --user && export PATH=$HOME/.local/bin:$PATH
+- rustup component add rustfmt
+script:
+- travis-cargo fmt --all -- --check
+- travis-cargo build
+- travis-cargo test
+- travis-cargo doc
+after_success:
+- travis-cargo doc-upload
+env:
+  global:
+    secure: VenUbOYu8vaCDcvi77sMSj8uWHzhzNlsqWJqzBav/zE9Hrc/NbCBg7PXdJ+z/Ay7SoIle9oILneSLgADQzD0oSUX8zklU/mBW69lhQqrv77Cth7/Bbkl1aPdHNcVoRz1EpxcIpDXpcla9zozeiUyHNXzxy2fCw/+ubGWPP+YbKRvjLlJ8yYFHTPw32PomDtophyRYiNSeFU3zDVFwYJPyCctoHlNbQU+AoTKfJSutCspqy/7qYQmFXbOjd+aLkzQ8AcY6O71rbj1V6GqGsMukooy9RonaSxhVOWkgXPxaxa1JEJCFRGASnBKsqkcMV8KGuAT68LLi2jmInizX2aATgie3ALMi+/KA7u6FPnhuth40nA/GTgsZpu3BnFcfHCvkguNkrdficOsuCuWKxtqmIjQvpQtewG89d9iOAmYTy35bVIRTiiRX/mjsXQrbMFU7j5Qe+rlvIIQhvEOCDUxtiK+Gjrs46SA//TLdqcULSJ3I/bin/x03jytLkCK0FmDGUTfdpyOgcd7l7x9eCoPzIl9tLHNe1XqSpFhuCgFyJAl1wbSngPbPZhmxm14FjNQNsKVHiqWTHWiR94ulBe7lKrvEkC8xM7YxlTiHQRZIygthhnlC2aHe8ll2jkRlek7X/83fMDVzca9sq+dp6in5YVUW99iOgv+X/iSfigjFi8=
