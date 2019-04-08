@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Message","Sample enum to show all the possible variants"]],"fn":[["enum_match","Function to test matching enums"],["enum_test","Function to test out enums"],["guessing","Guessing game code, based on the one from the Rust book"],["main",""],["option_test","Function to test the Option enum"],["print_string","Function to test matching Option"]]});
