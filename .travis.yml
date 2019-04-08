@@ -4,10 +4,10 @@ before_script:
 - pip install 'travis-cargo<0.2' --user && export PATH=$HOME/.local/bin:$PATH
 - rustup component add rustfmt
 script:
-- travis-cargo fmt --all -- --check
+- cargo fmt --all -- --check
 - travis-cargo build
 - travis-cargo test
-- travis-cargo doc --no-deps --document-private-items
+- cargo doc --no-deps --document-private-items
 after_success:
 - travis-cargo doc-upload
 env:
