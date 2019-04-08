@@ -7,7 +7,7 @@ script:
 - travis-cargo fmt --all -- --check
 - travis-cargo build
 - travis-cargo test
-- travis-cargo doc
+- travis-cargo doc --no-deps --document-private-items
 after_success:
 - travis-cargo doc-upload
 env:

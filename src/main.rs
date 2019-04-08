@@ -26,6 +26,7 @@ fn main() {
 	}
 }
 
+///Guessing game code, based on the one from the Rust book
 fn guessing() {
 	loop { //infinite
 		print!("Input: "); //need flush() afterwards so it is actually printed (in case of line buffering)
@@ -51,6 +52,7 @@ fn guessing() {
 	}
 }
 
+///Sample enum to show all the possible variants
 enum Message {
 	Quit,
 	Move {x: i32, y: i32}, //contains struct
@@ -59,6 +61,7 @@ enum Message {
 }
 
 impl Message { //add methods to the Message enum, works with structs as well
+        ///Sample method implementation for an enum/struct
 	fn print_variant(&self, actually_print : bool) {
 		if actually_print {
 			enum_match(&self);
@@ -66,6 +69,7 @@ impl Message { //add methods to the Message enum, works with structs as well
 	}
 }
 
+///Function to test out enums
 fn enum_test() {
 	let move_msg = Message::Move{x: 2, y: 4}; //struct, need to specify names
 	let x = 7;
@@ -85,6 +89,7 @@ fn enum_test() {
 	enum_match(&Message::Write(String::from("lol"))); //alternatively just construct it in there, no need for variable
 }
 
+///Function to test matching enums
 fn enum_match(msg : &Message) { //& so the enum will not be copied/moved into this function's scope
 	match msg {
 		Message::Move{x: x @ 2...4, y} => println!("Move to ({}, {}), special", x, y), //check that x is in the range and bind it as well (can use different name)
@@ -95,6 +100,7 @@ fn enum_match(msg : &Message) { //& so the enum will not be copied/moved into th
 	}
 }
 
+///Function to test the Option enum
 fn option_test() {
 	let some_string = Some(String::from("string"));
 	let null_string : Option<String> = None;
@@ -104,6 +110,7 @@ fn option_test() {
 	}
 }
 
+///Function to test matching Option
 fn print_string(value : &Option<String>) -> bool {
 	match value {
 		Some(x) => {
