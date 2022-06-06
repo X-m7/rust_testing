@@ -40,7 +40,7 @@ fn guessing() {
             Ok(num) => num,
             Err(_) => continue, //_ means anything
         };
-        let random_number = rand::thread_rng().gen_range(1, 51); //crypto-grade apparently, range includes min and excludes max
+        let random_number = rand::thread_rng().gen_range(1..51); //crypto-grade apparently, range includes min and excludes max
         println!("Random Number: {}", random_number);
         match input.cmp(&random_number) {
             Ordering::Less => println!("{} < {}", input, random_number), //comma to end single statement
@@ -98,7 +98,7 @@ fn enum_test() {
 fn enum_match(msg: &Message) {
     //& so the enum will not be copied/moved into this function's scope
     match msg {
-        Message::Move { x: x @ 2...4, y } => println!("Move to ({}, {}), special", x, y), //check that x is in the range and bind it as well (can use different name)
+        Message::Move { x: x @ 2..=4, y } => println!("Move to ({}, {}), special", x, y), //check that x is in the range and bind it as well (can use different name)
         Message::Move { x, y } => println!("Move to ({}, {})", x, y),
         Message::Write(x) => println!("{}", x),
         Message::ChangeColor(x, y, z) => println!("Change color to ({}, {}, {})", x, y, z),
